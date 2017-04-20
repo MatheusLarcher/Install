@@ -27,51 +27,6 @@ clear
 echo -e "\033[1;37m Será instalado: \033[1;32mVpsPack OpenVPN BadVpn\033[1;37m o \033[1;32mproxy\033[1;37m e o \033[1;32mSSH\033[1;37m serão configurados!\033[0m"
 read -p "Deseja continuar ? [s/n]: " -e -i n Confirmacao1
 if [[ "$Confirmacao1" = 's' ]]; then
-read -p "Para continuar confirme o IP deste servidor: " -e -i $IP ip
-echo "$ip" > /etc/Install-IP
-echo ""
-        echo "Qual protocolo você deseja para as conexões OPENVPN ?"
-        echo "   1) UDP "
-        echo "   2) TCP (Recomendado)"
-        read -p "Protocol [1-2]: " -e -i 2 PROTOCOL
-        case $PROTOCOL in
-                1)
-                PROTOCOL=udp
-                ;;
-                2)
-                PROTOCOL=tcp
-                ;;
-esac
-echo "$PROTOCOL" > /etc/Install-PROTOCOL
-        echo "Qual porta você deseja usar ?"
-        read -p "Porta: " -e -i 443 PORT
-        echo ""
-        echo "Qual DNS você deseja usar ?"
-        echo "   1) Sistema(Recomendado)"
-        echo "   2) Google"
-        echo "   3) OpenDNS"
-        echo "   4) NTT"
-        echo "   5) Hurricane Electric"
-        echo "   6) Verisign"
-        read -p "DNS [1-6]: " -e -i 1 DNS
-if (echo $DNS | egrep '[^1-6]')
-then
-echo -e "\033[1;31mErro!! \033[0;31mVocê digitou um número inválido!\033[0m"
-exit
-else
-echo "" > /dev/null
-fi      
-        echo "$DNS" > /etc/Install-DNS
-        if [[ $PORT = "22" ]]; then
-        echo -e "\033[1;31mErro!! \033[0;31mNão pode usar a porta padrão do SSH\033[0m"
-        exit
-        else
-        echo "$PORT" > /etc/Install-PORT
-        echo "Okay, você está pronto para executar o openvpn "
-        fi
-        read -n1 -r -p "Pressione uma tecla para continuar..."
-fi
-
 rm -rf configuracao 2> /dev/null
 wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/configuracao && bash configuracao
 rm -rf configuracao 2> /dev/null
