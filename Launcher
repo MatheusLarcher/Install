@@ -1,133 +1,88 @@
-#!/bin/bash
-
-if [ $(id -u) -eq 0 ]
-then
-        clear
-else
-        if echo $(id) |grep sudo > /dev/null
-        then
-        clear
-        echo "Voce não é root"
-        echo "Seu usuario esta no grupo sudo"
-        echo -e "Para virar root execute \033[1;31msudo su\033[0m"
-        exit
-        else
-        clear
-        echo -e "Vc nao esta como usuario root, nem com seus direitos (sudo)\nPara virar root execute \033[1;31msu\033[0m e digite sua senha root"
-        exit
-        fi
-fi
-
-if [ -d /etc/VpsPackdir ]
-then
-echo ""
-else
-mkdir /etc/VpsPackdir
-fi
-
-if [ -d /etc/VpsPackdir/senha ]
-then
-echo ""
-else
-mkdir /etc/VpsPackdir/senha
-fi
-
-if [ -d /etc/VpsPackdir/limite ]
-then
-echo ""
-else
-mkdir /etc/VpsPackdir/limite
-fi
-
-if [ -d /etc/VpsPackdir/date ]
-then
-echo ""
-else
-mkdir /etc/VpsPackdir/date
-fi
-
-if [ -d /etc/VpsPackdir/UsuariosADM ]
-then
-echo ""
-else
-mkdir /etc/VpsPackdir/UsuariosADM
-fi
+echo -e '\033[05;31m-------------------------------------------------------\033[00;37m'
+echo -e '\033[01;32m              O que deseja Instalar ?\033[00;37m'
+echo " "
+echo -e 'Digite: \033[01;32m1\033[00;37m para Instalar o VpsPack.'
+echo " "
+echo -e 'Digite: \033[01;32m2\033[00;37m para Instalar o OpenVPN.'
+echo " "
+echo -e 'Digite: \033[01;32m3\033[00;37m para Configurar proxy e SSH.'
+echo " "
+echo -e 'Digite: \033[01;32m4\033[00;37m para Instalar BadVPN.'
+echo " "
+echo -e 'Digite: \033[01;32m5\033[00;37m para Instalar Tudo.'
+echo " "
+echo -e 'Digite: \033[01;32m6\033[00;37m para Sair.'
+echo " "
+echo -e '\033[05;31m-------------------------------------------------------\033[00;37m'
+echo " "
+echo " "
+read -p "Responda: " -e -i 4 resposta
+if [[ "$resposta" = '1' ]]; then
 clear
-echo -e "\033[1;37m VpsPacket © Script criado por: \033[2;32mMatheus Larcher \033[0m"
-echo -e "\033[1;37mEscolha uma das opçoẽs:    \033[1;37mPara Sair Ctrl + C\033[1;34m
-[1] Usercreate \033[2;36m(Criar usuarios para SSH e OpenVPN)\033[1;34m
-[2] UserRedefine \033[2;36m(Opções para mudanças no usuario)\033[1;34m
-[3] firewall-block \033[2;36m(Regras iptables block torrent, icmp [RISCOS])\033[1;34m
-[4] ResetFirewall \033[2;36m(Retira todas as regras iptables [RISCOS])\033[1;34m
-[5] backupusers \033[2;36m(Backup dos usuarios para reinstalação futura)\033[1;34m
-[6] restusers \033[2;36m(Restaurar usuarios feito backup)\033[1;34m
-[7] detalhesuser \033[2;36m(Mostra informações de um unico usuario !!)\033[1;34m
-[8] detalhesusers \033[2;36m(Mostra informações de todos os usuarios !!)\033[1;34m
-[9] banner \033[2;36m(Banner mensagem no ssh)\033[1;34m
-[10] speedtest \033[2;36m(Teste de conexão [velocidade de banda])\033[1;34m
-[11] systemdetalhes \033[2;36m(Detalhes sobre o Sistema)\033[1;34m
-[12] graphicsystem \033[2;36m(Detalhes sobre o VpsPack)\033[1;34m
-[13] Ajuda \033[2;36m(Mostrar um grafico com informações do sistema)\033[1;34m
-[14] Mais \033[2;36m(Mostrar mais opções)\033[0m"
-read -p "[1-14]: " opcao
-
-case $opcao in
- 1)
-  Usercreate
-  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
-  VpsPack;;
- 2)
-  UserRedefine
-  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
-  VpsPack;;
- 3)
-  firewall-block
-  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
-  VpsPack;;
- 4)
-  ResetFirewall
-  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
-  VpsPack;;
- 5)
-  backupusers
-  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
-  VpsPack;;
- 6)
-  restusers
-  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
-  VpsPack;;
- 7)
-  detalhesuser
-  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
-  VpsPack;;
- 8)
-  detalhesusers
-  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
-  VpsPack;;
- 9)
-  banner
-  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
-  VpsPack;;
- 10)
-  speedtest
-  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
-  VpsPack;;
- 11)
-  systemdetalhes
-  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
-  VpsPack;;
-  12)
-  graphicsystem
-  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
-  VpsPack;;
-  13)
-  Ajuda
-  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
-  VpsPack;;
- 14)
-  Mais
-  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
-  VpsPack;;
- *)
-  id > /dev/null 2> /dev/null
-esac
+read -p "Deseja continuar ? [s/n]: " -e -i n Confirmacao1
+if [[ "$Confirmacao1" = 's' ]]; then
+wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/VpsPack-install && bash VpsPack-install
+rm -rf VpsPack-install 2> /dev/null
+else
+exit
+echo "" > /dev/null
+fi
+fi
+elif [[ "$resposta" = '2' ]]; then
+clear
+read -p "Deseja continuar ? [s/n]: " -e -i n Confirmacao2
+if [[ "$Confirmacao2" = 's' ]]; then
+wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/OpenVPN-install && bash OpenVPN-install
+rm -rf OpenVPN-install 2> /dev/null
+else
+exit
+echo "" > /dev/null
+fi
+fi
+elif [[ "$resposta" = '3' ]]; then
+clear
+read -p "Deseja continuar ? [s/n]: " -e -i n Confirmacao3
+if [[ "$Confirmacao3" = 's' ]]; then
+wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/configuracao && bash configuracao
+rm -rf configuracao 2> /dev/null
+else
+exit
+echo "" > /dev/null
+fi
+fi
+elif [[ "$resposta" = '4' ]]; then
+clear
+read -p "Deseja continuar ? [s/n]: " -e -i n Confirmacao4
+if [[ "$Confirmacao4" = 's' ]]; then
+rm -rf BadVpn 2> /dev/null
+wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack/master/BadVpn && bash BadVpn
+rm -rf BadVpn 2> /dev/null
+start badvpn
+fi
+fi
+elif [[ "$resposta" = '5' ]]; then
+clear
+read -p "Deseja continuar ? [s/n]: " -e -i n Confirmacao5
+if [[ "$Confirmacao5" = 's' ]]; then
+rm -rf configuracao 2> /dev/null
+wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/configuracao && bash configuracao
+rm -rf configuracao 2> /dev/null
+rm -rf OpenVPN-install 2> /dev/null
+wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/OpenVPN-install && bash OpenVPN-install
+rm -rf OpenVPN-install 2> /dev/null
+rm -rf VpsPack-install 2> /dev/null
+wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/VpsPack-install && bash VpsPack-install
+rm -rf VpsPack-install 2> /dev/null
+rm -rf BadVpn 2> /dev/null
+wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack/master/BadVpn && bash BadVpn
+rm -rf BadVpn 2> /dev/null
+start badvpn
+else
+exit
+echo "" > /dev/null
+fi
+fi
+elif [[ "$resposta" = '6' ]]; then
+exit
+echo "" > /dev/null
+fi
