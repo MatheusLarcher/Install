@@ -69,48 +69,32 @@ fi
 # I do this to make the script compatible with NATed servers (lowendspirit.com)
 # and to avoid getting an IPv6.
 
-IP=$(wget -4qO- "http://whatismyip.akamai.com/")
-
-        clear
-        echo 'Bem vindo ao instalador OpenVPN'
-        echo ""
-        # OpenVPN instalador e criação do primeiro usuario
-        echo "Responda as perguntas para iniciar a instalação"
-        echo "Responda corretamente"
-        echo ""
-        echo "Primeiro precisaremos do ip de sua maquina,este ip está correto ?"
-        echo "listening to."
-        read -p "IP address: " -e -i $IP IP
-        echo ""
-        echo "Qual protocolo você deseja para as conexões OPENVPN ?"
-        echo "   1) UDP"
-        echo "   2) TCP (Recomendado)"
-        read -p "Protocol [1-2]: " -e -i 2 PROTOCOL
-        case $PROTOCOL in
-                1)
-                PROTOCOL=udp
-                ;;
-                2)
-                PROTOCOL=tcp
-                ;;
-        esac
-        echo ""
-        echo "Qual porta você deseja usar ?"
-        read -p "Port: " -e -i 443 PORT
-        echo ""
-        echo "Qual DNS você deseja usar ?"
-        echo "   1) Sistema(Recomendado)"
-        echo "   2) Google"
-        echo "   3) OpenDNS"
-        echo "   4) NTT"
-        echo "   5) Hurricane Electric"
-        echo "   6) Verisign"
-        read -p "DNS [1-6]: " -e -i 1 DNS
-        echo ""
-        echo "Okay, você está pronto para executar o openvpn "
-        read -n1 -r -p "Pressione uma tecla para continuar..."
+IP=$(cat /etc/Install-IP)
+PROTOCOL=$(cat /etc/Install-PROTOCOL)
+DNS=$(cat /etc/Install-DNS)
+PORT=$(cat /etc/Install-PORT)
+if [[ "$IP" = "" ]]; then
+echo -e "\033[1;31mErro!! \033[0;31mArquivo com o IP não foi encontrado!\033[0m"
+else
+echo "" > /dev/null
+fi
+if [[ "$PROTOCOL" = "" ]]; then
+echo -e "\033[1;31mErro!! \033[0;31mArquivo com o PROTOCOLO não foi encontrado!\033[0m"
+else
+echo "" > /dev/null
+fi
+if [[ "$DNS" = "" ]]; then
+echo -e "\033[1;31mErro!! \033[0;31mArquivo com o DNS não foi encontrado!\033[0m"
+else
+echo "" > /dev/null
+fi
+if [[ "$PORT" = "" ]]; then
+echo -e "\033[1;31mErro!! \033[0;31mArquivo com a PORTA não foi encontrado!\033[0m"
+else
+echo "" > /dev/null
+fi
         if [[ "$OS" = 'debian' ]]; then
-                apt-get upgrade
+                apt-get upgrade -y
                 apt-get install openvpn iptables openssl ca-certificates -y
         else
                 # Else, the distro is CentOS
