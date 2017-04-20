@@ -16,6 +16,7 @@ echo " "
 echo -e '\033[05;31m-------------------------------------------------------\033[00;37m'
 echo " "
 echo " "
+echo -e "\033[1;37m Apenas o \033[1;32mVpsPack\033[1;37m será instalado\033[0m"
 read -p "Responda: " -e -i 4 resposta
 if [[ "$resposta" = '1' ]]; then
 clear
@@ -23,6 +24,7 @@ read -p "Deseja continuar ? [s/n]: " -e -i n Confirmacao1
 if [[ "$Confirmacao1" = 's' ]]; then
 wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/VpsPack-install && bash VpsPack-install
 rm -rf VpsPack-install 2> /dev/null
+rm -rf Launcher 2> /dev/null
 else
 exit
 echo "" > /dev/null
@@ -30,10 +32,12 @@ fi
 fi
 elif [[ "$resposta" = '2' ]]; then
 clear
+echo -e "\033[1;37m Apenas o \033[1;32mOpenVPN\033[1;37m será instalado\033[0m"
 read -p "Deseja continuar ? [s/n]: " -e -i n Confirmacao2
 if [[ "$Confirmacao2" = 's' ]]; then
 wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/OpenVPN-install && bash OpenVPN-install
 rm -rf OpenVPN-install 2> /dev/null
+rm -rf Launcher 2> /dev/null
 else
 exit
 echo "" > /dev/null
@@ -41,10 +45,12 @@ fi
 fi
 elif [[ "$resposta" = '3' ]]; then
 clear
+echo -e "\033[1;37m Será configurado o \033[1;32mproxy\033[1;37m e o \033[1;32mSSH \033[0m"
 read -p "Deseja continuar ? [s/n]: " -e -i n Confirmacao3
 if [[ "$Confirmacao3" = 's' ]]; then
 wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/configuracao && bash configuracao
 rm -rf configuracao 2> /dev/null
+rm -rf Launcher 2> /dev/null
 else
 exit
 echo "" > /dev/null
@@ -52,16 +58,19 @@ fi
 fi
 elif [[ "$resposta" = '4' ]]; then
 clear
+echo -e "\033[1;37m Apenas o \033[1;32mBadVpn\033[1;37m será instalado\033[0m"
 read -p "Deseja continuar ? [s/n]: " -e -i n Confirmacao4
 if [[ "$Confirmacao4" = 's' ]]; then
 rm -rf BadVpn 2> /dev/null
 wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack/master/BadVpn && bash BadVpn
 rm -rf BadVpn 2> /dev/null
-start badvpn
+rm -rf Launcher 2> /dev/null
+badvpn start
 fi
 fi
 elif [[ "$resposta" = '5' ]]; then
 clear
+echo -e "\033[1;37m Será instalado: \033[1;32mVpsPack OpenVPN BadVpn\033[1;37m o \033[1;32mproxy\033[1;37m e o \033[1;32mSSH\033[1;37m serão configurados!\033[0m"
 read -p "Deseja continuar ? [s/n]: " -e -i n Confirmacao5
 if [[ "$Confirmacao5" = 's' ]]; then
 rm -rf configuracao 2> /dev/null
@@ -76,7 +85,8 @@ rm -rf VpsPack-install 2> /dev/null
 rm -rf BadVpn 2> /dev/null
 wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack/master/BadVpn && bash BadVpn
 rm -rf BadVpn 2> /dev/null
-start badvpn
+rm -rf Launcher 2> /dev/null
+badvpn start
 else
 exit
 echo "" > /dev/null
