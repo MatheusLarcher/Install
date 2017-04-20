@@ -42,7 +42,7 @@ echo "" > /dev/null
 fi
 fi
 
-elif [[ "$resposta" = '2' ]]; then
+if [[ "$resposta" = '2' ]]; then
 clear
 echo -e "\033[1;37m Será configurado o \033[1;32mproxy\033[1;37m e o \033[1;32mSSH \033[0m"
 read -p "Deseja continuar ? [s/n]: " -e -i n Confirmacao3
@@ -55,7 +55,7 @@ exit
 echo "" > /dev/null
 fi
 fi
-elif [[ "$resposta" = '3' ]]; then
+if [[ "$resposta" = '3' ]]; then
 clear
 echo -e "\033[1;37m Apenas o \033[1;32mOpenVPN\033[1;37m será instalado\033[0m"
 read -p "Deseja continuar ? [s/n]: " -e -i n Confirmacao2
@@ -68,7 +68,7 @@ exit
 echo "" > /dev/null
 fi
 fi
-elif [[ "$resposta" = '4' ]]; then
+if [[ "$resposta" = '4' ]]; then
 clear
 echo -e "\033[1;37m Apenas o \033[1;32mBadVpn\033[1;37m será instalado\033[0m"
 read -p "Deseja continuar ? [s/n]: " -e -i n Confirmacao4
@@ -80,7 +80,7 @@ rm -rf Launcher 2> /dev/null
 badvpn start
 fi
 fi
-elif [[ "$resposta" = '5' ]]; then
+if [[ "$resposta" = '5' ]]; then
 clear
 echo -e "\033[1;37m Apenas o \033[1;32mVpsPack\033[1;37m será instalado\033[0m"
 read -p "Deseja continuar ? [s/n]: " -e -i n Confirmacao5
@@ -93,7 +93,7 @@ exit
 echo "" > /dev/null
 fi
 fi
-elif [[ "$resposta" = '6' ]]; then
+if [[ "$resposta" = '6' ]]; then
 exit
 echo "" > /dev/null
 fi
