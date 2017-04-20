@@ -19,7 +19,7 @@ echo "$PROTOCOL" > /etc/Install-PROTOCOL
         echo "Qual porta você deseja usar ?"
         read -p "Porta: " -e -i 443 PORT
         echo ""
-        echo "Qual DNS você deseja usar ?"
+        echo "Qual DNS você deseja usar no OPENVPN?"
         echo "   1) Sistema(Recomendado)"
         echo "   2) Google"
         echo "   3) OpenDNS"
@@ -40,7 +40,7 @@ fi
         exit
         else
         echo "$PORT" > /etc/Install-PORT
-        echo "Okay, você está pronto para executar o openvpn "
+        echo "Okay, você está pronto para Instalar "
         fi
         echo ""
         echo -e "\033[1;37m IP: \033[1;32m$ip"
