@@ -97,9 +97,9 @@ clear
 echo -e "\033[1;37m Apenas o \033[1;32mVpsPack\033[1;37m será instalado\033[0m"
 read -p "Deseja continuar ? [s/n]: " -e -i n Confirmacao5
 if [[ "$Confirmacao5" = 's' ]]; then
-rm -rf Dados 2> /dev/null
-wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/Dados && bash Dados
-rm -rf Dados 2> /dev/null
+IP=$(wget -qO- ipv4.icanhazip.com)
+read -p "Para continuar confirme o IP deste servidor: " -e -i $IP ip
+echo "$ip" > /etc/Install-IP
 wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/VpsPack-install && bash VpsPack-install
 rm -rf VpsPack-install 2> /dev/null
 rm -rf Launcher 2> /dev/null
