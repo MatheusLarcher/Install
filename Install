@@ -24,6 +24,7 @@ clear
 echo -e "\033[1;37m Será instalado: \033[1;32mVpsPack OpenVPN BadVpn\033[1;37m o \033[1;32mproxy\033[1;37m e o \033[1;32mSSH\033[1;37m serão configurados!\033[0m"
 read -p "Deseja continuar ? [s/n]: " -e -i n Confirmacao1
 if [[ "$Confirmacao1" = 's' ]]; then
+rm /etc/localtime && ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 rm -rf Dados 2> /dev/null
 wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/Dados && bash Dados
 rm -rf Dados 2> /dev/null
@@ -53,6 +54,7 @@ clear
 echo -e "\033[1;37m Será configurado o \033[1;32mproxy\033[1;37m e o \033[1;32mSSH \033[0m"
 read -p "Deseja continuar ? [s/n]: " -e -i n Confirmacao3
 if [[ "$Confirmacao3" = 's' ]]; then
+rm /etc/localtime && ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 IP=$(wget -qO- ipv4.icanhazip.com)
 read -p "Para continuar confirme o IP deste servidor: " -e -i $IP ip
 echo "$ip" > /etc/Install-IP
@@ -69,6 +71,7 @@ clear
 echo -e "\033[1;37m Apenas o \033[1;32mOpenVPN\033[1;37m será instalado\033[0m"
 read -p "Deseja continuar ? [s/n]: " -e -i n Confirmacao2
 if [[ "$Confirmacao2" = 's' ]]; then
+rm /etc/localtime && ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 rm -rf Dados 2> /dev/null
 wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/Dados && bash Dados
 rm -rf Dados 2> /dev/null
@@ -86,6 +89,7 @@ clear
 echo -e "\033[1;37m Apenas o \033[1;32mBadVpn\033[1;37m será instalado\033[0m"
 read -p "Deseja continuar ? [s/n]: " -e -i n Confirmacao4
 if [[ "$Confirmacao4" = 's' ]]; then
+rm /etc/localtime && ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 rm -rf BadVpn 2> /dev/null
 wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack/master/BadVpn && bash BadVpn
 rm -rf BadVpn 2> /dev/null
@@ -98,6 +102,7 @@ clear
 echo -e "\033[1;37m Apenas o \033[1;32mVpsPack\033[1;37m será instalado\033[0m"
 read -p "Deseja continuar ? [s/n]: " -e -i n Confirmacao5
 if [[ "$Confirmacao5" = 's' ]]; then
+rm /etc/localtime && ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 IP=$(wget -qO- ipv4.icanhazip.com)
 read -p "Para continuar confirme o IP deste servidor: " -e -i $IP ip
 echo "$ip" > /etc/Install-IP
