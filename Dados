@@ -1,3 +1,5 @@
+#/bin/bash
+IP=$(wget -qO- ipv4.icanhazip.com)
 read -p "Para continuar confirme o IP deste servidor: " -e -i $IP ip
 echo "$ip" > /etc/Install-IP
 echo ""
@@ -40,4 +42,9 @@ fi
         echo "$PORT" > /etc/Install-PORT
         echo "Okay, você está pronto para executar o openvpn "
         fi
-        read -n1 -r -p "Pressione uma tecla para continuar..."
+        echo ""
+        echo -e "\033[1;37m IP: \033[1;32m$ip"
+        echo -e "\033[1;37m protocolo: \033[1;32m$PROTOCOL"
+        echo -e "\033[1;37m PORT: \033[1;32m$PORT"
+        echo -e "\033[1;37m DNS: \033[1;32m$DNS\033[0m"
+read -n1 -r -p "Pressione uma tecla para continuar..."
