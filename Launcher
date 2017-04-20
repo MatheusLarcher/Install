@@ -1,7 +1,7 @@
 echo -e '\033[05;31m-------------------------------------------------------\033[00;37m'
 echo -e '\033[01;32m              O que deseja Instalar ?\033[00;37m'
 echo " "
-echo -e 'Digite: \033[01;32m5\033[00;37m para Instalar Tudo.'
+echo -e 'Digite: \033[01;32m1\033[00;37m para Instalar Tudo.'
 echo " "
 echo -e 'Digite: \033[01;32m2\033[00;37m para Instalar apenas o OpenVPN.'
 echo " "
@@ -9,7 +9,7 @@ echo -e 'Digite: \033[01;32m3\033[00;37m para Configurar apenas proxy e SSH.'
 echo " "
 echo -e 'Digite: \033[01;32m4\033[00;37m para Instalar apenas BadVPN.'
 echo " "
-echo -e 'Digite: \033[01;32m1\033[00;37m para Instalar apenas o VpsPack.'
+echo -e 'Digite: \033[01;32m5\033[00;37m para Instalar apenas o VpsPack.'
 echo " "
 echo -e 'Digite: \033[01;32m6\033[00;37m para Sair.'
 echo " "
