@@ -1,7 +1,4 @@
 #!/bin/bash
-tput setaf 8 ; tput setab 5; tput bold ; printf '%30s%s%-15s\n' "OpenVPN Manager" ; tput sgr0
-echo ""
-
 corPadrao="\033[0m"
 preto="\033[0;30m"
 vermelho="\033[0;31m"
@@ -61,6 +58,11 @@ elif [[ -e /etc/centos-release || -e /etc/redhat-release ]]; then
 else
         echo "Looks like you aren't running this installer on a Debian, Ubuntu or CentOS system"
         exit 5
+fi
+
+if [[ -e /etc/openvpn/server.conf ]]; then
+echo "OpenVPN já está instalado"
+exit	
 fi
 
 # Try to get our IP from the system and fallback to the Internet.
