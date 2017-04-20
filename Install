@@ -39,7 +39,7 @@ rm -rf VpsPack-install 2> /dev/null
 rm -rf BadVpn 2> /dev/null
 wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack/master/BadVpn && bash BadVpn
 rm -rf BadVpn 2> /dev/null
-rm -rf Launcher 2> /dev/null
+rm -rf Install 2> /dev/null
 badvpn start
 echo -e "\033[1;37m Execute\033[1;32m cache-detalhesusers.install\033[1;37m em uma sessão screen !!\033[1;37m"
 else
@@ -58,7 +58,7 @@ read -p "Para continuar confirme o IP deste servidor: " -e -i $IP ip
 echo "$ip" > /etc/Install-IP
 wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/configuracao && bash configuracao
 rm -rf configuracao 2> /dev/null
-rm -rf Launcher 2> /dev/null
+rm -rf Install 2> /dev/null
 else
 exit
 echo "" > /dev/null
@@ -75,7 +75,7 @@ rm -rf Dados 2> /dev/null
 rm -rf OpenVPN-install 2> /dev/null
 wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/OpenVPN-install && bash OpenVPN-install
 rm -rf OpenVPN-install 2> /dev/null
-rm -rf Launcher 2> /dev/null
+rm -rf Install 2> /dev/null
 else
 exit
 echo "" > /dev/null
@@ -89,7 +89,7 @@ if [[ "$Confirmacao4" = 's' ]]; then
 rm -rf BadVpn 2> /dev/null
 wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack/master/BadVpn && bash BadVpn
 rm -rf BadVpn 2> /dev/null
-rm -rf Launcher 2> /dev/null
+rm -rf Install 2> /dev/null
 badvpn start
 fi
 fi
@@ -103,7 +103,7 @@ read -p "Para continuar confirme o IP deste servidor: " -e -i $IP ip
 echo "$ip" > /etc/Install-IP
 wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/VpsPack-install && bash VpsPack-install
 rm -rf VpsPack-install 2> /dev/null
-rm -rf Launcher 2> /dev/null
+rm -rf Install 2> /dev/null
 echo -e "\033[1;37m Execute\033[1;32m cache-detalhesusers.install\033[1;37m em uma sessão screen !!\033[1;37m"
 else
 exit
