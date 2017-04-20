@@ -1,0 +1,133 @@
+#!/bin/bash
+
+if [ $(id -u) -eq 0 ]
+then
+        clear
+else
+        if echo $(id) |grep sudo > /dev/null
+        then
+        clear
+        echo "Voce não é root"
+        echo "Seu usuario esta no grupo sudo"
+        echo -e "Para virar root execute \033[1;31msudo su\033[0m"
+        exit
+        else
+        clear
+        echo -e "Vc nao esta como usuario root, nem com seus direitos (sudo)\nPara virar root execute \033[1;31msu\033[0m e digite sua senha root"
+        exit
+        fi
+fi
+
+if [ -d /etc/VpsPackdir ]
+then
+echo ""
+else
+mkdir /etc/VpsPackdir
+fi
+
+if [ -d /etc/VpsPackdir/senha ]
+then
+echo ""
+else
+mkdir /etc/VpsPackdir/senha
+fi
+
+if [ -d /etc/VpsPackdir/limite ]
+then
+echo ""
+else
+mkdir /etc/VpsPackdir/limite
+fi
+
+if [ -d /etc/VpsPackdir/date ]
+then
+echo ""
+else
+mkdir /etc/VpsPackdir/date
+fi
+
+if [ -d /etc/VpsPackdir/UsuariosADM ]
+then
+echo ""
+else
+mkdir /etc/VpsPackdir/UsuariosADM
+fi
+clear
+echo -e "\033[1;37m VpsPacket © Script criado por: \033[2;32mMatheus Larcher \033[0m"
+echo -e "\033[1;37mEscolha uma das opçoẽs:    \033[1;37mPara Sair Ctrl + C\033[1;34m
+[1] Usercreate \033[2;36m(Criar usuarios para SSH e OpenVPN)\033[1;34m
+[2] UserRedefine \033[2;36m(Opções para mudanças no usuario)\033[1;34m
+[3] firewall-block \033[2;36m(Regras iptables block torrent, icmp [RISCOS])\033[1;34m
+[4] ResetFirewall \033[2;36m(Retira todas as regras iptables [RISCOS])\033[1;34m
+[5] backupusers \033[2;36m(Backup dos usuarios para reinstalação futura)\033[1;34m
+[6] restusers \033[2;36m(Restaurar usuarios feito backup)\033[1;34m
+[7] detalhesuser \033[2;36m(Mostra informações de um unico usuario !!)\033[1;34m
+[8] detalhesusers \033[2;36m(Mostra informações de todos os usuarios !!)\033[1;34m
+[9] banner \033[2;36m(Banner mensagem no ssh)\033[1;34m
+[10] speedtest \033[2;36m(Teste de conexão [velocidade de banda])\033[1;34m
+[11] systemdetalhes \033[2;36m(Detalhes sobre o Sistema)\033[1;34m
+[12] graphicsystem \033[2;36m(Detalhes sobre o VpsPack)\033[1;34m
+[13] Ajuda \033[2;36m(Mostrar um grafico com informações do sistema)\033[1;34m
+[14] Mais \033[2;36m(Mostrar mais opções)\033[0m"
+read -p "[1-14]: " opcao
+
+case $opcao in
+ 1)
+  Usercreate
+  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
+  VpsPack;;
+ 2)
+  UserRedefine
+  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
+  VpsPack;;
+ 3)
+  firewall-block
+  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
+  VpsPack;;
+ 4)
+  ResetFirewall
+  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
+  VpsPack;;
+ 5)
+  backupusers
+  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
+  VpsPack;;
+ 6)
+  restusers
+  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
+  VpsPack;;
+ 7)
+  detalhesuser
+  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
+  VpsPack;;
+ 8)
+  detalhesusers
+  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
+  VpsPack;;
+ 9)
+  banner
+  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
+  VpsPack;;
+ 10)
+  speedtest
+  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
+  VpsPack;;
+ 11)
+  systemdetalhes
+  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
+  VpsPack;;
+  12)
+  graphicsystem
+  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
+  VpsPack;;
+  13)
+  Ajuda
+  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
+  VpsPack;;
+ 14)
+  Mais
+  read -n1 -r -p " Pressione uma tecla para Abrir novamente o VpsPack..."
+  VpsPack;;
+ *)
+  id > /dev/null 2> /dev/null
+esac
