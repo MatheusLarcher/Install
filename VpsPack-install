@@ -19,6 +19,14 @@ else
         exit
         fi
 fi
+arquiretura=$(uname -m)
+if [[ $arquiretura = "x86_64" ]]; then
+wget https://ufpr.dl.sourceforge.net/project/linuxfreedomfor/Linux/nbwmon%20bin/64bit/nbwmon
+else
+wget https://ufpr.dl.sourceforge.net/project/linuxfreedomfor/Linux/nbwmon%20bin/32bit/nbwmon
+fi
+sudo mv nbwmon /usr/bin/nbwmon
+sudo chmod +x /usr/bin/nbwmon
 if yum -y update
 then
 yum -y update
