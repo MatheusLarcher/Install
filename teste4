@@ -27,7 +27,7 @@ echo -e "\033[1;31m-----> \033[1;37mSSH NA PORTA: \033[1;31m22\033[0m"
 echo -e "\033[1;31m-----> \033[1;37mSSH NOS IPS: \033[1;31m$ip, localhost e 127.0.0.1\033[0m"
 echo " [################################              ]"
 
-apt-get install squid3 1> /dev/null 2> /dev/null
+apt-get install squid3 -y 1> /dev/null 2> /dev/null
 
 clear
 echo -e "\033[1;31m-----> \033[01;37mSeu ip:\033[1;31m $ip"
