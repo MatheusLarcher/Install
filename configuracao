@@ -93,7 +93,7 @@ http_port 8799
 http_port 3128
 visible_hostname PackSSH
 acl ip dstdomain $ip
-http_access allow ip > /etc/squid/squid.conf
+http_access allow ip
 acl accept dstdomain -i /etc/payloads
 http_access allow accept
 acl local dstdomain localhost
