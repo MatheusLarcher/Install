@@ -1,0 +1,157 @@
+#!/bin/bash
+echo 'Port 22
+Protocol 2
+KeyRegenerationInterval 3600
+ServerKeyBits 1024
+SyslogFacility AUTH
+LogLevel INFO
+LoginGraceTime 120
+PermitRootLogin yes
+StrictModes yes
+RSAAuthentication yes
+PubkeyAuthentication yes
+IgnoreRhosts yes
+RhostsRSAAuthentication no
+HostbasedAuthentication no
+PermitEmptyPasswords no
+ChallengeResponseAuthentication no
+PasswordAuthentication yes
+X11Forwarding yes
+X11DisplayOffset 10
+PrintMotd no
+PrintLastLog yes
+TCPKeepAlive yes
+#UseLogin no
+AcceptEnv LANG LC_*
+Subsystem sftp /usr/lib/openssh/sftp-server
+UsePAM yes
+PermitTunnel yes
+Compression yes
+AllowTcpForwarding yes
+#UseDNS yes
+GatewayPorts yes' > /etc/ssh/sshd_config
+service ssh restart
+
+#if [ -f /root/painelssh.zip ]
+#then
+#echo ""
+#else
+#echo -e "\033[1;31m Erro!! O arquivo não foi encontrado!! \033[0m"
+#exit
+#fi
+
+apt-get update -y
+#apt-get upgrade -y 
+apt-get install git wget squid3 -y
+IP=$(wget -qO- ipv4.icanhazip.com)
+echo 'SQUID UBUNTU'
+rm -rf /etc/squid/squid.conf
+touch /etc/squid/squid.conf
+echo 'acl ip dstdomain '$IP > /etc/squid/squid.conf
+echo 'acl payload dstdomain -i "/etc/payloads"
+acl local dstdomain localhost
+acl iplocal dstdomain 127.0.0.1
+acl netflix dstdomain .netflix.
+acl redelocal src 192.168.0.1-192.168.0.254
+acl vpn src 10.8.0.1-10.8.0.254
+acl videoprime dstdomain .videoprime.
+acl ip4 dstdomain 127.0.0.2
+acl oi dstdomain 200.222.108.241
+http_access allow ip
+http_access allow payload
+http_access allow local
+http_access allow iplocal
+http_access allow redelocal
+http_access allow vpn
+http_access allow ip4
+http_access allow oi
+http_access allow netflix
+http_access allow videoprime
+#http_port 80
+http_port 8080
+http_port 8799
+http_port 3128
+visible_hostname RNEOXBRASIL
+http_access deny all
+via off
+forwarded_for off' >> /etc/squid/squid.conf
+
+echo 'SQUID DEBIAN'
+rm -rf /etc/squid3/squid.conf
+touch /etc/squid3/squid.conf
+echo 'acl ip dstdomain '$IP > /etc/squid3/squid.conf
+echo 'acl payload dstdomain -i "/etc/payloads"
+acl local dstdomain localhost
+acl iplocal dstdomain 127.0.0.1
+acl netflix dstdomain .netflix.
+acl redelocal src 192.168.0.1-192.168.0.254
+acl vpn src 10.8.0.1-10.8.0.254
+acl videoprime dstdomain .videoprime.
+acl ip4 dstdomain 127.0.0.2
+acl oi dstdomain 200.222.108.241
+http_access allow ip
+http_access allow payload
+http_access allow local
+http_access allow iplocal
+http_access allow redelocal
+http_access allow vpn
+http_access allow ip4
+http_access allow oi
+http_access allow netflix
+http_access allow videoprime
+#http_port 80
+http_port 8080
+http_port 8799
+http_port 3128
+visible_hostname RNEOXBRASIL
+http_access deny all
+via off
+forwarded_for off' >> /etc/squid3/squid.conf
+service squid* restart
+
+apt-get update
+#apt-get upgrade -y
+apt-get install curl -y
+apt-get install apache2 -y
+apt-get install php5 libapache2-mod-php5 php5-mcrypt -y
+apt-get install mysql-server -y
+#  mysql_install_db
+mysql_secure_installation
+apt-get install phpmyadmin -y
+php5enmod mcrypt
+service apache2 restart
+ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
+apt-get install libssh2-1-dev libssh2-php -y
+#mysql -h localhost -u root -p102030A -e "CREATE DATABASE ssh"
+php -m |grep ssh2
+mv painelssh.zip /var/www/html/
+cd /var/www/html
+apt-get install unzip -y
+unzip painelssh.zip
+rm painelssh.zip index.html
+service apache2 restart
+
+clear
+echo '
+1 - digite os comandos abaixo:
+ 
+ mysql -h localhost -u root -pSUA_SENHA -e "CREATE DATABASE ssh" 
+ rm /etc/localtime && ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime'
+echo "
+2 - abra o arquivo pass.php e digite sua senha. Ex: <?php $pass = 'SUA_SENHA';?> 
+ nano /var/www/html/pages/system/pass.php"
+echo "
+3 - Acesse: $IP/phpmyadmin E crie um Banco de Dados SSH
+ 
+4 - Dentro da VPS digite: crontab -e
+escolha a opcao NANO e cole no arquivo os comanda abaixo:
+ 
+* * * * * /usr/bin/php /var/www/html/pages/system/cron.php
+* * * * * /usr/bin/php /var/www/html/pages/system/cron.ssh.php
+* * * * * /usr/bin/php /var/www/html/pages/system/cron.sms.php
+* * * * * /usr/bin/php /var/www/html/pages/system/cron.online.ssh.php
+10 * * * * /usr/bin/php /var/www/html/pages/system/cron.servidor.php
+
+
+    ******Final*******"
+ 
