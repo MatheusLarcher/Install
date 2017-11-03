@@ -108,5 +108,6 @@ Compression yes
 AllowTcpForwarding yes
 #UseDNS yes
 GatewayPorts yes' > /etc/ssh/sshd_config
-
 rm squidconf
+service squid* restart
+service ssh restart
