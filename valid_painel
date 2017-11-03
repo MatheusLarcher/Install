@@ -2,6 +2,6 @@ if [ -f /root/painelssh.zip ]
 then
 echo ""
 else
-echo -e "\033[1;31m Erro!! O arquivo não foi encontrado!! \033[0m"
+echo -e "\033[1;31m Erro!! O arquivo \033[0;31mpainelssh.zip \033[1;31mnão foi encontrado!! \033[0m"
 exit
 fi
