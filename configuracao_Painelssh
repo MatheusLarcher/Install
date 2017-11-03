@@ -32,6 +32,14 @@ AllowTcpForwarding yes
 GatewayPorts yes' > /etc/ssh/sshd_config
 service ssh restart
 
+if [ -f /root/painelssh.zip ]
+then
+echo ""
+else
+echo -e "\033[1;31m Erro!! O arquivo não foi encontrado!! \033[0m"
+exit
+fi
+
 echo "minhaclaro.claro.com.br
 recargafacil.claro.com.br
 frontend.claro.com.br
