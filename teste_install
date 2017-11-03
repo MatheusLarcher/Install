@@ -120,6 +120,10 @@ fi
 if [[ "$resposta" = '6' ]]; then
 echo -e "\033[1;37m O \033[1;32mOpenVPN e o PainelSSH\033[1;37m será instalado\033[0m"
 read -p "Deseja continuar ? [s/n]: " -e -i n Confirmacao2
+else
+echo " "
+exit
+fi
 if [[ "$Confirmacao2" = 's' ]]; then
 rm /etc/localtime && ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 rm -rf Dados 2> /dev/null
@@ -128,9 +132,10 @@ rm -rf Dados 2> /dev/null
 rm -rf OpenVPN-install 2> /dev/null
 wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/OpenVPN-install && bash OpenVPN-install
 rm -rf OpenVPN-install 2> /dev/null
-rm -rf Install 2> /dev/null
+rm -rf configuracao_Painelssh
 wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/configuracao_Painelssh && bash configuracao_Painelssh
 rm -rf configuracao_Painelssh
+rm -rf Install 2> /dev/null
 else
 exit
 echo "" > /dev/null
