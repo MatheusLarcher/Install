@@ -32,13 +32,19 @@ AllowTcpForwarding yes
 GatewayPorts yes' > /etc/ssh/sshd_config
 service ssh restart
 
-if [ -f /root/painelssh.zip ]
-then
-echo ""
-else
-echo -e "\033[1;31m Erro!! O arquivo não foi encontrado!! \033[0m"
-exit
-fi
+echo "minhaclaro.claro.com.br
+recargafacil.claro.com.br
+frontend.claro.com.br
+appfb.claro.com.sv
+empresas.claro.com.br
+d1n212ccp6ldpw.cloudfront.net
+claro-gestoronline.claro.com.br
+forms.claro.com.br
+golpf.claro.com.br
+logtiscap.claro.com.br
+www.recargafacil.claro.com.br
+.vivo.com.br
+.bradescocelular.com.br" > /etc/payloads
 
 apt-get update -y
 #apt-get upgrade -y 
