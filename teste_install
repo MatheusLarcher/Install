@@ -125,9 +125,18 @@ echo " "
 exit
 fi
 if [[ "$Confirmacao2" = 's' ]]; then
-rm -rf valid_painel
-wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/valid_painel && bash valid_painel
-rm -rf valid_painel
+echo ""
+else
+echo ""
+exit
+fi
+if [ -f /root/painelssh.zip ]
+then
+echo ""
+else
+echo -e "\033[0;31m Erro!! O arquivo \033[1;31mpainelssh.zip \033[0;31mnão foi encontrado!! \033[0m"
+exit
+fi
 rm -rf Dados 2> /dev/null
 wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/Dados && bash Dados
 rm -rf Dados 2> /dev/null
@@ -138,10 +147,7 @@ rm -rf configuracao_Painelssh
 wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/configuracao_Painelssh && bash configuracao_Painelssh
 rm -rf configuracao_Painelssh
 rm -rf Install 2> /dev/null
-else
-exit
 echo "" > /dev/null
-fi
 if [[ "$resposta" = '7' ]]; then
 echo " "
 echo "" > /dev/null
