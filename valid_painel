@@ -1,0 +1,7 @@
+if [ -f /root/painelssh.zip ]
+then
+echo ""
+else
+echo -e "\033[1;31m Erro!! O arquivo não foi encontrado!! \033[0m"
+exit
+fi
