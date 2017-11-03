@@ -137,6 +137,7 @@ echo "" > /dev/null
 fi
 if [[ "$resposta" = '7' ]]; then
 echo " "
-exit
 echo "" > /dev/null
+rm -rf Install 2> /dev/null
+exit
 fi
