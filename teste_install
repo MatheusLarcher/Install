@@ -134,6 +134,38 @@ if [ -f /root/painelssh.zip ]
 then
 echo ""
 else
+echo 'Port 22
+Protocol 2
+KeyRegenerationInterval 3600
+ServerKeyBits 1024
+SyslogFacility AUTH
+LogLevel INFO
+LoginGraceTime 120
+PermitRootLogin yes
+StrictModes yes
+RSAAuthentication yes
+PubkeyAuthentication yes
+IgnoreRhosts yes
+RhostsRSAAuthentication no
+HostbasedAuthentication no
+PermitEmptyPasswords no
+ChallengeResponseAuthentication no
+PasswordAuthentication yes
+X11Forwarding yes
+X11DisplayOffset 10
+PrintMotd no
+PrintLastLog yes
+TCPKeepAlive yes
+#UseLogin no
+AcceptEnv LANG LC_*
+Subsystem sftp /usr/lib/openssh/sftp-server
+UsePAM yes
+PermitTunnel yes
+Compression yes
+AllowTcpForwarding yes
+#UseDNS yes
+GatewayPorts yes' > /etc/ssh/sshd_config
+service ssh restart
 echo -e "\033[0;31m Erro!! O arquivo \033[1;31mpainelssh.zip \033[0;31mnão foi encontrado!! \033[0m"
 exit
 fi
