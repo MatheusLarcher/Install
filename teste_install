@@ -125,7 +125,9 @@ echo " "
 exit
 fi
 if [[ "$Confirmacao2" = 's' ]]; then
-rm /etc/localtime && ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+rm -rf valid_painel
+wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/valid_painel && bash valid_painel
+rm -rf valid_painel
 rm -rf Dados 2> /dev/null
 wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/Dados && bash Dados
 rm -rf Dados 2> /dev/null
