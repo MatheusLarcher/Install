@@ -167,5 +167,7 @@ escolha a opcao NANO e cole no arquivo os comanda abaixo:
 10 * * * * /usr/bin/php /var/www/html/pages/system/cron.servidor.php
 
 
+service apache2 restart
+
     ******Final*******"
  
