@@ -61,6 +61,7 @@ AllowTcpForwarding yes
 GatewayPorts yes' > /etc/ssh/sshd_config
 service ssh restart
 echo -e "\033[0;31m Erro!! O arquivo \033[1;31mpainelssh.zip \033[0;31mnão foi encontrado!! \033[0m"
+rm -rf Install
 exit
 fi
 
