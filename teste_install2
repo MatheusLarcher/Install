@@ -85,6 +85,10 @@ rm -rf BadVpn 2> /dev/null
 rm -rf Install 2> /dev/null
 badvpn start
 echo -e "\033[1;37m Execute\033[1;32m cache-detalhesusers.install\033[1;37m em uma sessão screen !!\033[1;37m"
+sleep 2s
+rm -rf configuracao_Painelssh
+wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/configuracao_Painelssh && bash configuracao_Painelssh
+rm -rf configuracao_Painelssh
 else
 exit
 echo "" > /dev/null
