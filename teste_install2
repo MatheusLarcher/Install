@@ -1,0 +1,162 @@
+#!/bin/bash
+
+echo -e '\033[05;31m-------------------------------------------------------\033[00;37m'
+echo -e '\033[01;32m              O que deseja Instalar ?\033[00;37m'
+echo " "
+echo -e 'Digite: \033[01;32m1\033[00;37m para Instalar Squid + Openvpn + PainelSSH.'
+echo " "
+echo -e 'Digite: \033[01;32m2\033[00;37m para Configurar o proxy e SSH.'
+echo " "
+echo -e 'Digite: \033[01;32m3\033[00;37m para Instalar apenas o OpenVPN.'
+echo " "
+echo -e 'Digite: \033[01;32m4\033[00;37m para Instalar apenas BadVPN.'
+echo " "
+echo -e 'Digite: \033[01;32m5\033[00;37m para Instalar apenas o VpsPack.'
+echo " "
+echo -e 'Digite: \033[01;32m6\033[00;37m para Sair.'
+echo " "
+echo -e '\033[05;31m-------------------------------------------------------\033[00;37m'
+echo " "
+echo " "
+read -p "Responda: " -e -i 1 resposta
+if [[ "$resposta" = '1' ]]; then
+clear
+echo -e "\033[1;37m Será instalado: \033[1;32mVpsPack OpenVPN BadVpn PainelSSH\033[1;37m o \033[1;32mproxy\033[1;37m e o \033[1;32mSSH\033[1;37m serão configurados!\033[0m"
+read -p "Deseja continuar ? [s/n]: " -e -i n Confirmacao1
+
+if [ -f /root/painelssh.zip ]
+then
+echo ""
+else
+echo 'Port 22
+Protocol 2
+KeyRegenerationInterval 3600
+ServerKeyBits 1024
+SyslogFacility AUTH
+LogLevel INFO
+LoginGraceTime 120
+PermitRootLogin yes
+StrictModes yes
+RSAAuthentication yes
+PubkeyAuthentication yes
+IgnoreRhosts yes
+RhostsRSAAuthentication no
+HostbasedAuthentication no
+PermitEmptyPasswords no
+ChallengeResponseAuthentication no
+PasswordAuthentication yes
+X11Forwarding yes
+X11DisplayOffset 10
+PrintMotd no
+PrintLastLog yes
+TCPKeepAlive yes
+#UseLogin no
+AcceptEnv LANG LC_*
+Subsystem sftp /usr/lib/openssh/sftp-server
+UsePAM yes
+PermitTunnel yes
+Compression yes
+AllowTcpForwarding yes
+#UseDNS yes
+GatewayPorts yes' > /etc/ssh/sshd_config
+service ssh restart
+echo -e "\033[0;31m Erro!! O arquivo \033[1;31mpainelssh.zip \033[0;31mnão foi encontrado!! \033[0m"
+exit
+fi
+
+if [[ "$Confirmacao1" = 's' ]]; then
+rm /etc/localtime && ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+rm -rf Dados 2> /dev/null
+wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/Dados && bash Dados
+rm -rf Dados 2> /dev/null
+rm -rf configuracao 2> /dev/null
+wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/configuracao && bash configuracao
+rm -rf configuracao 2> /dev/null
+rm -rf OpenVPN-install 2> /dev/null
+wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/OpenVPN-install && bash OpenVPN-install
+rm -rf OpenVPN-install 2> /dev/null
+rm -rf VpsPack-install 2> /dev/null
+wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/VpsPack-install && bash VpsPack-install
+rm -rf VpsPack-install 2> /dev/null
+rm -rf BadVpn 2> /dev/null
+wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack/master/BadVpn && bash BadVpn
+rm -rf BadVpn 2> /dev/null
+rm -rf Install 2> /dev/null
+badvpn start
+echo -e "\033[1;37m Execute\033[1;32m cache-detalhesusers.install\033[1;37m em uma sessão screen !!\033[1;37m"
+else
+exit
+echo "" > /dev/null
+fi
+fi
+
+if [[ "$resposta" = '2' ]]; then
+clear
+echo -e "\033[1;37m Será configurado o \033[1;32mproxy\033[1;37m e o \033[1;32mSSH \033[0m"
+read -p "Deseja continuar ? [s/n]: " -e -i n Confirmacao3
+if [[ "$Confirmacao3" = 's' ]]; then
+rm /etc/localtime && ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+IP=$(wget -qO- ipv4.icanhazip.com)
+read -p "Para continuar confirme o IP deste servidor: " -e -i $IP ip
+echo "$ip" > /etc/Install-IP
+wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/configuracao && bash configuracao
+rm -rf configuracao 2> /dev/null
+rm -rf Install 2> /dev/null
+else
+exit
+echo "" > /dev/null
+fi
+fi
+if [[ "$resposta" = '3' ]]; then
+clear
+echo -e "\033[1;37m Apenas o \033[1;32mOpenVPN\033[1;37m será instalado\033[0m"
+read -p "Deseja continuar ? [s/n]: " -e -i n Confirmacao2
+if [[ "$Confirmacao2" = 's' ]]; then
+rm /etc/localtime && ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+rm -rf Dados 2> /dev/null
+wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/Dados && bash Dados
+rm -rf Dados 2> /dev/null
+rm -rf OpenVPN-install 2> /dev/null
+wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/OpenVPN-install && bash OpenVPN-install
+rm -rf OpenVPN-install 2> /dev/null
+rm -rf Install 2> /dev/null
+else
+exit
+echo "" > /dev/null
+fi
+fi
+if [[ "$resposta" = '4' ]]; then
+clear
+echo -e "\033[1;37m Apenas o \033[1;32mBadVpn\033[1;37m será instalado\033[0m"
+read -p "Deseja continuar ? [s/n]: " -e -i n Confirmacao4
+if [[ "$Confirmacao4" = 's' ]]; then
+rm /etc/localtime && ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+rm -rf BadVpn 2> /dev/null
+wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack/master/BadVpn && bash BadVpn
+rm -rf BadVpn 2> /dev/null
+rm -rf Install 2> /dev/null
+badvpn start
+fi
+fi
+if [[ "$resposta" = '5' ]]; then
+clear
+echo -e "\033[1;37m Apenas o \033[1;32mVpsPack\033[1;37m será instalado\033[0m"
+read -p "Deseja continuar ? [s/n]: " -e -i n Confirmacao5
+if [[ "$Confirmacao5" = 's' ]]; then
+rm /etc/localtime && ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+IP=$(wget -qO- ipv4.icanhazip.com)
+read -p "Para continuar confirme o IP deste servidor: " -e -i $IP ip
+echo "$ip" > /etc/Install-IP
+wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/VpsPack-install && bash VpsPack-install
+rm -rf VpsPack-install 2> /dev/null
+rm -rf Install 2> /dev/null
+echo -e "\033[1;37m Execute\033[1;32m cache-detalhesusers.install\033[1;37m em uma sessão screen !!\033[1;37m"
+else
+exit
+echo "" > /dev/null
+fi
+fi
+if [[ "$resposta" = '6' ]]; then
+exit
+echo "" > /dev/null
+fi
