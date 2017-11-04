@@ -11,6 +11,9 @@ rm /etc/localtime && ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 rm -rf Dados 2> /dev/null
 wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/Dados && bash Dados
 rm -rf Dados 2> /dev/null
+rm -rf configuracao 2> /dev/null
+wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/configuracao && bash configuracao
+rm -rf configuracao 2> /dev/null
 rm -rf OpenVPN-install 2> /dev/null
 wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/OpenVPN-install && bash OpenVPN-install
 rm -rf OpenVPN-install 2> /dev/null
