@@ -267,7 +267,7 @@ dev tun
 proto $PROTOCOL
 remote $IP $PORT
 http-proxy-option CUSTOM-HEADER X-Online-Host  sdp.vivo.com.br
-http-proxy $IP 80
+http-proxy $IP 8080
 resolv-retry infinite
 nobind
 persist-key
