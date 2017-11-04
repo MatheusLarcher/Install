@@ -15,6 +15,7 @@ ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
 apt-get install libssh2-1-dev libssh2-php -y
 php -m |grep ssh2
 cd 
+apt-get install unzip
 rm -rf painelssh.zip
 wget https://github.com/matheuslarcher20/Install/raw/master/painelssh.zip
 mv painelssh.zip /var/www/html/
@@ -22,12 +23,6 @@ cd /var/www/html
 unzip painelssh.zip
 rm painelssh.zip index.html
 
-echo '* * * * * /usr/bin/php /var/www/html/pages/system/cron.php
-* * * * * /usr/bin/php /var/www/html/pages/system/cron.ssh.php
-* * * * * /usr/bin/php /var/www/html/pages/system/cron.sms.php
-* * * * * /usr/bin/php /var/www/html/pages/system/cron.online.ssh.php
-10 * * * * /usr/bin/php /var/www/html/pages/system/cron.servidor.php
-' > /tmp/crontab.P7cUWm/crontab
 service apache2 restart
 
 clear
@@ -42,15 +37,14 @@ echo "
 echo "
 3 - Acesse: $IP/phpmyadmin E crie um Banco de Dados SSH
  
-#4 - Dentro da VPS digite: crontab -e
-#escolha a opcao NANO e cole no arquivo os comanda abaixo:
+4 - Dentro da VPS digite: crontab -e
+escolha a opcao NANO e cole no arquivo os comanda abaixo:
  
-# * * * * * /usr/bin/php /var/www/html/pages/system/cron.php
-# * * * * * /usr/bin/php /var/www/html/pages/system/cron.ssh.php
-# * * * * * /usr/bin/php /var/www/html/pages/system/cron.sms.php
-# * * * * * /usr/bin/php /var/www/html/pages/system/cron.online.ssh.php
-# 10 * * * * /usr/bin/php /var/www/html/pages/system/cron.servidor.php
-
+* * * * * /usr/bin/php /var/www/html/pages/system/cron.php
+* * * * * /usr/bin/php /var/www/html/pages/system/cron.ssh.php
+* * * * * /usr/bin/php /var/www/html/pages/system/cron.sms.php
+* * * * * /usr/bin/php /var/www/html/pages/system/cron.online.ssh.php
+10 * * * * /usr/bin/php /var/www/html/pages/system/cron.servidor.php
 
 service apache2 restart
 
