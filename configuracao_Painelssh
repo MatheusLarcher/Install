@@ -1,5 +1,4 @@
 #!/bin/bash
-
 apt-get update
 #apt-get upgrade -y
 apt-get install curl -y
@@ -22,22 +21,17 @@ mv painelssh.zip /var/www/html/
 cd /var/www/html
 unzip painelssh.zip
 rm painelssh.zip index.html
-
+read -p "Senha para mysql e Banco de dados: " SENHA
+mysql -h localhost -u root -p$SENHA -e "CREATE DATABASE ssh"
 service apache2 restart
-
 clear
-echo '
-1 - digite os comandos abaixo:
- 
- mysql -h localhost -u root -pSUA_SENHA -e "CREATE DATABASE ssh" 
- rm /etc/localtime && ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime'
 echo "
-2 - abra o arquivo pass.php e digite sua senha. Ex: <?php $pass = 'SUA_SENHA';?> 
+ 1 - abra o arquivo pass.php e digite sua senha. Ex: <?php $pass = 'SUA_SENHA';?> 
  nano /var/www/html/pages/system/pass.php"
 echo "
-3 - Acesse: $IP/phpmyadmin E crie um Banco de Dados SSH
+2 - Acesse: $IP/phpmyadmin E crie um Banco de Dados SSH
  
-4 - Dentro da VPS digite: crontab -e
+3 - Dentro da VPS digite: crontab -e
 escolha a opcao NANO e cole no arquivo os comanda abaixo:
  
 * * * * * /usr/bin/php /var/www/html/pages/system/cron.php
