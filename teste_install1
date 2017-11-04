@@ -1,5 +1,12 @@
 #!/bin/bash
-
+echo -e "\033[1;37m Será instalado: \033[1;32mVpsPack OpenVPN BadVpn\033[1;37m o \033[1;32mproxy\033[1;37m e o \033[1;32mSSH\033[1;37m serão configurados!\033[0m"
+read -p "Deseja continuar ? [s/n]: " -e -i n Confirmacao1
+if [[ "$Confirmacao1" = 's' ]]; then
+echo ""
+else
+echo ""
+exit
+fi
 rm /etc/localtime && ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 rm -rf Dados 2> /dev/null
 wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/Dados && bash Dados
