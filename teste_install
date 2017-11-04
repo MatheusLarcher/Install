@@ -3,7 +3,7 @@
 echo -e '\033[05;31m-------------------------------------------------------\033[00;37m'
 echo -e '\033[01;32m              O que deseja Instalar ?\033[00;37m'
 echo " "
-echo -e 'Digite: \033[01;32m1\033[00;37m para Instalar Tudo.'
+echo -e 'Digite: \033[01;32m1\033[00;37m para Instalar Squid + Openvpn + PainelSSH.'
 echo " "
 echo -e 'Digite: \033[01;32m2\033[00;37m para Configurar o proxy e SSH.'
 echo " "
@@ -13,9 +13,7 @@ echo -e 'Digite: \033[01;32m4\033[00;37m para Instalar apenas BadVPN.'
 echo " "
 echo -e 'Digite: \033[01;32m5\033[00;37m para Instalar apenas o VpsPack.'
 echo " "
-echo -e 'Digite: \033[01;32m6\033[00;37m para Instalar OpenVPN e PainelSSH.'
-echo " "
-echo -e 'Digite: \033[01;32m7\033[00;37m para Sair.'
+echo -e 'Digite: \033[01;32m6\033[00;37m para Sair.'
 echo " "
 echo -e '\033[05;31m-------------------------------------------------------\033[00;37m'
 echo " "
@@ -30,15 +28,13 @@ rm /etc/localtime && ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 rm -rf Dados 2> /dev/null
 wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/Dados && bash Dados
 rm -rf Dados 2> /dev/null
-rm -rf configuracao 2> /dev/null
-wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/configuracao && bash configuracao
-rm -rf configuracao 2> /dev/null
+apt-get install unzip
+rm -rf painelssh.zip
+wget https://github.com/matheuslarcher20/Install/raw/master/painelssh.zip && unzip painelssh.zip
+rm -rf painelssh.zip
 rm -rf OpenVPN-install 2> /dev/null
 wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/OpenVPN-install && bash OpenVPN-install
 rm -rf OpenVPN-install 2> /dev/null
-rm -rf VpsPack-install 2> /dev/null
-wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/VpsPack-install && bash VpsPack-install
-rm -rf VpsPack-install 2> /dev/null
 rm -rf BadVpn 2> /dev/null
 wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack/master/BadVpn && bash BadVpn
 rm -rf BadVpn 2> /dev/null
@@ -118,71 +114,6 @@ echo "" > /dev/null
 fi
 fi
 if [[ "$resposta" = '6' ]]; then
-echo -e "\033[1;37m O \033[1;32mOpenVPN e o PainelSSH\033[1;37m será instalado\033[0m"
-read -p "Deseja continuar ? [s/n]: " -e -i n Confirmacao2
-else
-echo " "
 exit
-fi
-if [[ "$Confirmacao2" = 's' ]]; then
-echo ""
-else
-echo ""
-exit
-fi
-if [ -f /root/painelssh.zip ]
-then
-echo ""
-else
-echo 'Port 22
-Protocol 2
-KeyRegenerationInterval 3600
-ServerKeyBits 1024
-SyslogFacility AUTH
-LogLevel INFO
-LoginGraceTime 120
-PermitRootLogin yes
-StrictModes yes
-RSAAuthentication yes
-PubkeyAuthentication yes
-IgnoreRhosts yes
-RhostsRSAAuthentication no
-HostbasedAuthentication no
-PermitEmptyPasswords no
-ChallengeResponseAuthentication no
-PasswordAuthentication yes
-X11Forwarding yes
-X11DisplayOffset 10
-PrintMotd no
-PrintLastLog yes
-TCPKeepAlive yes
-#UseLogin no
-AcceptEnv LANG LC_*
-Subsystem sftp /usr/lib/openssh/sftp-server
-UsePAM yes
-PermitTunnel yes
-Compression yes
-AllowTcpForwarding yes
-#UseDNS yes
-GatewayPorts yes' > /etc/ssh/sshd_config
-service ssh restart
-echo -e "\033[0;31m Erro!! O arquivo \033[1;31mpainelssh.zip \033[0;31mnão foi encontrado!! \033[0m"
-exit
-fi
-rm -rf Dados 2> /dev/null
-wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/Dados && bash Dados
-rm -rf Dados 2> /dev/null
-rm -rf OpenVPN-install 2> /dev/null
-wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/OpenVPN-install && bash OpenVPN-install
-rm -rf OpenVPN-install 2> /dev/null
-rm -rf configuracao_Painelssh
-wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/configuracao_Painelssh && bash configuracao_Painelssh
-rm -rf configuracao_Painelssh
-rm -rf Install 2> /dev/null
 echo "" > /dev/null
-if [[ "$resposta" = '7' ]]; then
-echo " "
-echo "" > /dev/null
-rm -rf Install 2> /dev/null
-exit
 fi
