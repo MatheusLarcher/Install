@@ -100,6 +100,7 @@ php -m |grep ssh2
 cd 
 mv painelssh.zip /var/www/html/
 cd /var/www/html
+unzip painelssh.zip
 rm painelssh.zip index.html
 
 echo '* * * * * /usr/bin/php /var/www/html/pages/system/cron.php
