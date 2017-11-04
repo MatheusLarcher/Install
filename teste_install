@@ -28,10 +28,6 @@ rm /etc/localtime && ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 rm -rf Dados 2> /dev/null
 wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/Dados && bash Dados
 rm -rf Dados 2> /dev/null
-apt-get install unzip
-rm -rf painelssh.zip
-wget https://github.com/matheuslarcher20/Install/raw/master/painelssh.zip && unzip painelssh.zip
-rm -rf painelssh.zip
 rm -rf OpenVPN-install 2> /dev/null
 wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/OpenVPN-install && bash OpenVPN-install
 rm -rf OpenVPN-install 2> /dev/null
