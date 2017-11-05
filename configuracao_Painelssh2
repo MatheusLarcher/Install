@@ -4,17 +4,6 @@ apt-get update
 apt-get install curl -y
 apt-get install apache2 -y
 
-echo 'Listen 802
-
-<IfModule ssl_module>
-        Listen 4432
-</IfModule>
-
-<IfModule mod_gnutls.c>
-        Listen 4432
-</IfModule>' > /etc/apache2/ports.conf
-
-
 apt-get install php5 libapache2-mod-php5 php5-mcrypt -y
 apt-get install mysql-server -y
 #  mysql_install_db
