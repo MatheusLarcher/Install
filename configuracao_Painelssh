@@ -3,7 +3,6 @@ apt-get update
 #apt-get upgrade -y
 apt-get install curl -y
 apt-get install apache2 -y
-
 apt-get install php5 libapache2-mod-php5 php5-mcrypt -y
 apt-get install mysql-server -y
 #  mysql_install_db
