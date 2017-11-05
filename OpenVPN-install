@@ -281,7 +281,6 @@ service openvpn restart
         echo ""
         cd 
         rm OpenVPN-install
-wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack/master/CrtCreate
         echo -e "\033[0;31m CONCLUIDO...! \033[0m"
         sleep 2
         echo ""
