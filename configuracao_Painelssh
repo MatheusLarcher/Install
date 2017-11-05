@@ -44,3 +44,4 @@ service apache2 restart
 
     ******Final*******"
  
+ rm -rf configuracao_Painelssh
