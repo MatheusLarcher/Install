@@ -14,9 +14,23 @@ rm -rf Dados 2> /dev/null
 rm -rf configuracao 2> /dev/null
 wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/configuracao && bash configuracao
 rm -rf configuracao 2> /dev/null
+read -p "Deseja instalar o OpenVpn ? [s/n]: " -e -i n Confirmacao1
+if [[ "$Confirmacao1" = 's' ]]; then
+echo ""
+else
+echo ""
+exit
+fi
 rm -rf OpenVPN-install 2> /dev/null
 wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/OpenVPN-install && bash OpenVPN-install
 rm -rf OpenVPN-install 2> /dev/null
+read -p "Deseja instalar o BadVpn ? [s/n]: " -e -i n Confirmacao1
+if [[ "$Confirmacao1" = 's' ]]; then
+echo ""
+else
+echo ""
+exit
+fi
 rm -rf BadVpn 2> /dev/null
 wget https://raw.githubusercontent.com/matheuslarcher20/VpsPack/master/BadVpn && bash BadVpn
 rm -rf BadVpn 2> /dev/null
