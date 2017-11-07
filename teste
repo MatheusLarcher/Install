@@ -1,0 +1,21 @@
+http_port 80
+http_port 8080
+http_port 8799
+http_port 3128 transparent
+visible_hostname VpsPack
+acl ip dstdomain $IP
+acl REQUEST method GET
+acl REQUEST method POST
+acl REQUEST method OPTIONS
+acl REQUEST method HEAD
+acl REQUEST method CONNECT
+http_access allow net
+http_access allow REQUEST
+http_access allow ip" > /etc/squid*/squid.conf
+echo 'acl accept dstdomain -i "/etc/payloads"
+http_access allow accept
+acl local dstdomain localhost
+http_access allow local
+acl iplocal dstdomain 127.0.0.1
+http_access allow iplocal
+http_access deny all
