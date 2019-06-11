@@ -109,7 +109,8 @@ echo "$ip" > /etc/Install-IP
 wget https://raw.githubusercontent.com/matheuslarcher20/Install/master/VpsPack-install && bash VpsPack-install
 rm -rf VpsPack-install 2> /dev/null
 rm -rf Install 2> /dev/null
-echo -e "\033[1;37m Execute\033[1;32m cache-detalhesusers.install\033[1;37m em uma sessão screen !!\033[1;37m"
+#echo -e "\033[1;37m Execute\033[1;32m cache-detalhesusers.install\033[1;37m em uma sessão screen !!\033[1;37m"
+screen -S cache-detalhesusers.install
 else
 exit
 echo "" > /dev/null
