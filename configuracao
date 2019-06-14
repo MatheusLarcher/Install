@@ -30,7 +30,6 @@ Compression yes
 AllowTcpForwarding yes
 #UseDNS yes
 GatewayPorts yes' > /etc/ssh/sshd_config
-service ssh restart
 
 echo "minhaclaro.claro.com.br
 recargafacil.claro.com.br
@@ -48,71 +47,77 @@ www.recargafacil.claro.com.br
 
 apt-get update -y
 #apt-get upgrade -y 
-apt-get install git wget squid3 -y
+apt-get install squid3 -y
 IP=$(wget -qO- ipv4.icanhazip.com)
-echo 'SQUID UBUNTU'
-rm -rf /etc/squid/squid.conf
-touch /etc/squid/squid.conf
-echo 'acl ip dstdomain '$IP > /etc/squid/squid.conf
-echo 'acl payload dstdomain -i "/etc/payloads"
-acl local dstdomain localhost
-acl iplocal dstdomain 127.0.0.1
-acl netflix dstdomain .netflix.
-acl redelocal src 192.168.0.1-192.168.0.254
-acl vpn src 10.8.0.1-10.8.0.254
-acl videoprime dstdomain .videoprime.
-acl ip4 dstdomain 127.0.0.2
-acl oi dstdomain 200.222.108.241
-http_access allow ip
-http_access allow payload
-http_access allow local
-http_access allow iplocal
-http_access allow redelocal
-http_access allow vpn
-http_access allow ip4
-http_access allow oi
-http_access allow netflix
-http_access allow videoprime
-#http_port 80
-http_port 8080
-http_port 8799
-http_port 3128
-visible_hostname RNEOXBRASIL
-http_access deny all
-via off
-forwarded_for off' >> /etc/squid/squid.conf
 
-echo 'SQUID DEBIAN'
-rm -rf /etc/squid3/squid.conf
-touch /etc/squid3/squid.conf
-echo 'acl ip dstdomain '$IP > /etc/squid3/squid.conf
-echo 'acl payload dstdomain -i "/etc/payloads"
-acl local dstdomain localhost
-acl iplocal dstdomain 127.0.0.1
-acl netflix dstdomain .netflix.
-acl redelocal src 192.168.0.1-192.168.0.254
-acl vpn src 10.8.0.1-10.8.0.254
-acl videoprime dstdomain .videoprime.
-acl ip4 dstdomain 127.0.0.2
-acl oi dstdomain 200.222.108.241
-http_access allow ip
-http_access allow payload
-http_access allow local
-http_access allow iplocal
-http_access allow redelocal
-http_access allow vpn
-http_access allow ip4
-http_access allow oi
-http_access allow netflix
-http_access allow videoprime
-#http_port 80
+rm /etc/squid/squid.conf
+rm /etc/squid3/squid.conf
+
+echo "acl url1 url_regex -i '/etc/payloads'
+acl url2 dstdomain -i 127.0.0.1
+acl url3 dstdomain -i localhost
+acl url4 dstdomain -i $IP
+always_direct allow all
+
+http_access allow url1
+http_access allow url2
+http_access allow url3
+http_access allow url4
+http_access deny all
+header_access From deny all
+header_access Via deny all
+header_access Server deny all
+
+#portas
+http_port 80
 http_port 8080
 http_port 8799
 http_port 3128
-visible_hostname RNEOXBRASIL
+
+visible_hostname FodexSsh
+
+forwarded_for off                          
+pipeline_prefetch on" >> /etc/squid/squid.conf
+
+echo "$IP
+.com.br
+.claro
+.tim
+.oi" > /etc/squid/squid.conf
+
+
+echo "acl url1 url_regex -i '/etc/payloads'
+acl url2 dstdomain -i 127.0.0.1
+acl url3 dstdomain -i localhost
+acl url4 dstdomain -i $IP
+always_direct allow all
+
+http_access allow url1
+http_access allow url2
+http_access allow url3
+http_access allow url4
 http_access deny all
-via off
-forwarded_for off' >> /etc/squid3/squid.conf
+header_access From deny all
+header_access Via deny all
+header_access Server deny all
+
+#portas
+http_port 80
+http_port 8080
+http_port 8799
+http_port 3128
+
+visible_hostname FodexSsh
+
+forwarded_for off                          
+pipeline_prefetch on" >> /etc/squid3/squid.conf
+
+echo "$IP
+.com.br
+.claro
+.tim
+.oi" > /etc/squid3/squid.conf
+
 service squid* restart
 
 echo " Concluido!!"
