@@ -83,7 +83,7 @@ echo "$IP
 .com.br
 .claro
 .tim
-.oi" > /etc/squid/squid.conf
+.oi" > /etc/squid/accept
 
 
 echo "acl url1 url_regex -i '/etc/payloads'
@@ -116,7 +116,7 @@ echo "$IP
 .com.br
 .claro
 .tim
-.oi" > /etc/squid3/squid.conf
+.oi" > /etc/squid3/accept
 
 service squid* restart
 
