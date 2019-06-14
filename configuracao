@@ -118,6 +118,7 @@ echo "$IP
 .tim
 .oi" > /etc/squid3/accept
 
+service ssh restart
 service squid* restart
 
 echo " Concluido!!"
