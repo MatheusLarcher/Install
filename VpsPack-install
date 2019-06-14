@@ -67,3 +67,4 @@ cd
 rm -rf install 2> /dev/null
 rm -rf VpsPack 2> /dev/null
 rm /root/VpsPack-install 2> /dev/null
+rm nbwmon
